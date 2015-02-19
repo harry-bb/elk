@@ -179,7 +179,7 @@
       "title": "Charts",
       "height": "350px",
       "editable": true,
-      "collapse": false,
+      "collapse": true,
       "collapsable": true,
       "panels": [
         {
@@ -1143,7 +1143,7 @@
     {
       "type": "filtering",
       "collapse": true,
-      "notice": false,
+      "notice": true,
       "enable": true
     }
   ],
@@ -1196,5 +1196,5 @@
     "load_local": true,
     "hide": false
   },
-  "refresh": false
+  "refresh": "1m"
 }
