@@ -1,6 +1,6 @@
 # ELK Dockerfile by MO 
 #
-# VERSION 0.1
+# VERSION 0.2
 FROM ubuntu:14.04.1
 MAINTAINER MO
 
@@ -33,6 +33,7 @@ ADD elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD 000-default.conf /etc/apache2/sites-available/000-default.conf 
 ADD logstash.conf /etc/logstash/conf.d/logstash.conf
 ADD suricata.json /var/www/html/app/dashboards/default.json
+ADD small.png /var/www/html/img/small.png
 
 # Clean up 
 RUN apt-get remove wget -y && \
