@@ -1,6 +1,6 @@
 # ELK Dockerfile by MO 
 #
-# VERSION 0.2
+# VERSION 0.3
 FROM ubuntu:14.04.1
 MAINTAINER MO
 
@@ -15,18 +15,19 @@ RUN apt-get dist-upgrade -y
 # Get and install packages 
 RUN apt-get install -y apache2 supervisor wget openjdk-7-jdk openjdk-7-jre-headless && \ 
     cd /root/ && \
-    wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.deb && \
+    wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.deb && \
     wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb && \
     wget https://download.elasticsearch.org/kibana/kibana/kibana-3.1.2.tar.gz && \
-    dpkg -i elasticsearch-1.4.2.deb && \
+    dpkg -i elasticsearch-1.4.4.deb && \
     dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb && \
     tar -xzf kibana-3.1.2.tar.gz && mv kibana-3.1.2/* /var/www/html/ && \
-    rm -rf kibana-3.1.2
+    rm -rf kibana-3.1.2 elasticsearch-1.4.4.de logstash_1.4.2-1-2c0f5a1_all.deb kibana-3.1.2.tar.gz
 
 # Setup user, groups and configs
 RUN addgroup --gid 2000 tpot && \
     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 tpot && \
-    sed -i 's#elasticsearch: "http://"+window.location.hostname+":9200",#elasticsearch: "http://"+window.location.hostname+"/elasticsearch/",#' /var/www/html/config.js && \
+    sed -i 's#elasticsearch: "http://"+window.location.hostname+":9200",#elasticsearch: "http://"+window.location.hostname+":8080/elasticsearch/",#' /var/www/html/config.js && \
+    sed -i 's#Listen 80#Listen 8080#' /etc/apache2/ports.conf && \
     a2enmod proxy proxy_http
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
@@ -39,7 +40,7 @@ ADD small.png /var/www/html/img/small.png
 RUN apt-get remove wget -y && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /root/*.deb /root/*.tar.gz
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Start ELK
 CMD ["/usr/bin/supervisord"]
