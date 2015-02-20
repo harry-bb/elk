@@ -1,6 +1,6 @@
 # ELK Dockerfile by MO 
 #
-# VERSION 0.3
+# VERSION 0.4
 FROM ubuntu:14.04.1
 MAINTAINER MO
 
@@ -9,11 +9,11 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
-RUN apt-get update -y
-RUN apt-get dist-upgrade -y
+RUN apt-get update -y && \
+    apt-get dist-upgrade -y
 
 # Get and install packages 
-RUN apt-get install -y apache2 supervisor wget openjdk-7-jdk openjdk-7-jre-headless && \ 
+RUN apt-get install -y apache2 supervisor wget openjdk-7-jdk openjdk-7-jre-headless python-pip && \ 
     cd /root/ && \
     wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.deb && \
     wget https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb && \
@@ -21,7 +21,8 @@ RUN apt-get install -y apache2 supervisor wget openjdk-7-jdk openjdk-7-jre-headl
     dpkg -i elasticsearch-1.4.4.deb && \
     dpkg -i logstash_1.4.2-1-2c0f5a1_all.deb && \
     tar -xzf kibana-3.1.2.tar.gz && mv kibana-3.1.2/* /var/www/html/ && \
-    rm -rf kibana-3.1.2 elasticsearch-1.4.4.de logstash_1.4.2-1-2c0f5a1_all.deb kibana-3.1.2.tar.gz
+    rm -rf kibana-3.1.2 elasticsearch-1.4.4.de logstash_1.4.2-1-2c0f5a1_all.deb kibana-3.1.2.tar.gz && \
+    pip install elasticsearch-curator
 
 # Setup user, groups and configs
 RUN addgroup --gid 2000 tpot && \
