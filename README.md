@@ -20,3 +20,9 @@ Using upstart, copy the `upstart/elk.conf` to `/etc/init/elk.conf` and start usi
     service start elk
 
 This will make sure that the docker container is started with the appropriate rights and port mappings. Further, it autostarts during boot.
+
+To access the kibana dashboard, make sure you have enabled SSH on T-Pot (see T-Pot documentation), then enable the port forward and make sure you leave the terminal open.
+
+    ssh -p 64295 -l tsec -N -L8080:127.0.0.1:64296 <yourHoneypotsPublicIPaddress>
+
+Finally, open a webbrowser and access http://127.0.0.1:8080. The kibana dashboard can be customized to fit your needs.
