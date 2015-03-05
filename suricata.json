@@ -160,7 +160,7 @@
         },
         "2": {
           "type": "querystring",
-          "query": "dest_ip=\"85.214.11.201\" or dest_ip=\"85.214.11.202\"",
+          "query": "dest_ip=\"85.214.137.63\"",
           "mandate": "mustNot",
           "active": true,
           "alias": "",
