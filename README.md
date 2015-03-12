@@ -25,4 +25,6 @@ To access the kibana dashboard, make sure you have enabled SSH on T-Pot (see T-P
 
     ssh -p 64295 -l tsec -N -L8080:127.0.0.1:64296 <yourHoneypotsPublicIPaddress>
 
-Finally, open a webbrowser and access http://127.0.0.1:8080. The kibana dashboard can be customized to fit your needs.
+Finally, open a webbrowser and go to http://127.0.0.1:8080. 
+
+Note: The kibana dashboard can be customized to fit your needs.
