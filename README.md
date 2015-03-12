@@ -17,7 +17,7 @@ The `supervisord.conf` is used to start the elk stack under supervision of super
 
 Using upstart, copy the `upstart/elk.conf` to `/etc/init/elk.conf` and start using
 
-    service start elk
+    service elk start
 
 This will make sure that the docker container is started with the appropriate rights and port mappings. Further, it autostarts during boot.
 
