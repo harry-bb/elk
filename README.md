@@ -1,7 +1,7 @@
 # dockerized elk stack
 
 
-[elk](http://www.elasticsearch.org/overview/) is a stack combining elasticsearch, logstash and the kibana dashboard and enables to structure and vizualize data in realtime. 
+[elk](http://www.elasticsearch.org/overview/) is a stack combining elasticsearch, logstash and the kibana dashboard. It is used to structure and vizualize data in realtime. 
 
 This repository contains the necessary files to create a *dockerized* version of the elk stack. 
 
@@ -9,7 +9,7 @@ This dockerized version is part of the **[T-Pot community honeypot](http://dtag-
 
 The `Dockerfile` contains the blueprint for the dockerized elk stack and will be used to setup the docker image.  
 
-The `000-default.conf` is a reverse proxy directive for apache in order to be able to reach the kibana dashboard on T-Pot. 
+The `000-default.conf` is a reverse proxy directive for apache httpd in order to be able to reach the kibana dashboard on T-Pot. 
 
 Further, `elasticsearch.yml`, `logstash.conf`and `suricata.json` are all tailored to fit the T-Pot environment. All important data is stored in `/data/elk/`.
 
