@@ -19,7 +19,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"alert\""
+          "query": "event_type:\"alert\""
         },
         "2": {
           "id": 2,
@@ -28,7 +28,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"tls\""
+          "query": "event_type:\"tls\""
         },
         "3": {
           "id": 3,
@@ -37,7 +37,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"fileinfo\""
+          "query": "event_type:\"fileinfo\""
         },
         "5": {
           "id": 5,
@@ -46,7 +46,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"http\""
+          "query": "event_type:\"http\""
         },
         "6": {
           "id": 6,
@@ -55,7 +55,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"dns\""
+          "query": "event_type:\"dns\""
         },
         "7": {
           "id": 7,
@@ -64,7 +64,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"ssh\""
+          "query": "event_type:\"ssh\""
         },
         "8": {
           "id": 8,
@@ -73,7 +73,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "event_type=\"rdp\""
+          "query": "event_type:\"rdp\""
         },
         "9": {
           "id": 9,
@@ -82,7 +82,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "dest_port=\"5060\" or dest_port=\"5061\""
+          "query": "dest_port:5060 OR dest_port:5061"
         },
         "10": {
           "id": 10,
@@ -91,7 +91,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "dest_port=\"20\" or dest_port=\"21\""
+          "query": "dest_port:20 OR dest_port:21"
         },
         "11": {
           "id": 11,
@@ -100,7 +100,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "dest_port=\"1433\" or dest_port=\"3306\""
+          "query": "dest_port:1433 OR dest_port:3306"
         },
         "12": {
           "id": 12,
@@ -109,7 +109,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "dest_port=\"445\" or dest_port=\"42\" or dest_port=\"135\""
+          "query": "dest_port:445 OR dest_port:42 OR dest_port:135"
         },
         "13": {
           "id": 13,
@@ -118,7 +118,7 @@
           "pin": false,
           "type": "lucene",
           "enable": true,
-          "query": "dest_port=\"69\""
+          "query": "dest_port:69"
         }
       },
       "ids": [
@@ -154,13 +154,13 @@
           "field": "event_type.raw",
           "value": "dns",
           "mandate": "mustNot",
-          "active": true,
+          "active": false,
           "alias": "",
           "id": 1
         },
         "2": {
           "type": "querystring",
-          "query": "dest_ip=\"85.214.137.63\"",
+          "query": "dest_ip:\"85.214.137.63\"",
           "mandate": "mustNot",
           "active": true,
           "alias": "",
@@ -1126,16 +1126,16 @@
       "query": "*",
       "pinned": true,
       "history": [
-        "dest_port=\"69\"",
-        "dest_port=\"445\" or dest_port=\"42\" or dest_port=\"135\"",
-        "dest_port=\"1433\" or dest_port=\"3306\"",
-        "dest_port=\"20\" or dest_port=\"21\"",
-        "dest_port=\"5060\" or dest_port=\"5061\"",
-        "event_type=\"rdp\"",
-        "event_type=\"ssh\"",
-        "event_type=\"dns\"",
-        "event_type=\"http\"",
-        "event_type=\"fileinfo\""
+        "dest_port:69",
+        "dest_port:445 OR dest_port:42 OR dest_port:135",
+        "dest_port:1433 OR dest_port:3306",
+        "dest_port:20 OR dest_port:21",
+        "dest_port:5060 OR dest_port:5061",
+        "event_type:\"rdp\"",
+        "event_type:\"ssh\"",
+        "event_type:\"dns\"",
+        "event_type:\"http\"",
+        "event_type:\"fileinfo\""
       ],
       "remember": 10,
       "enable": true
@@ -1143,7 +1143,7 @@
     {
       "type": "filtering",
       "collapse": true,
-      "notice": true,
+      "notice": false,
       "enable": true
     }
   ],
