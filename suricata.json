@@ -154,7 +154,7 @@
           "field": "event_type.raw",
           "value": "dns",
           "mandate": "mustNot",
-          "active": false,
+          "active": true,
           "alias": "",
           "id": 1
         },
