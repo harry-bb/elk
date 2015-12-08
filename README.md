@@ -11,7 +11,7 @@ The `Dockerfile` contains the blueprint for the dockerized elk stack and will be
 
 The `000-default.conf` is a reverse proxy directive for apache httpd in order to be able to reach the kibana dashboard on T-Pot. 
 
-Further, `elasticsearch.yml`, `logstash.conf`and `suricata.json` are all tailored to fit the T-Pot environment. All important data is stored in `/data/elk/`.
+Further, `elasticsearch.yml`, `logstash.conf`and `elkbase.tar.gz` are all tailored to fit the T-Pot environment. All important data is stored in `/data/elk/`.
 
 The `supervisord.conf` is used to start the elk stack under supervision of supervisord. 
 
@@ -25,6 +25,6 @@ To access the kibana dashboard, make sure you have enabled SSH on T-Pot (see T-P
 
     ssh -p 64295 -l tsec -N -L8080:127.0.0.1:64296 <yourHoneypotsPublicIPaddress>
 
-Finally, open a webbrowser and go to http://127.0.0.1:8080. 
+Finally, open a webbrowser and go to http://127.0.0.1:8080/app/kibana#/dashboard/Default. 
 
 Note: The kibana dashboard can be customized to fit your needs.
