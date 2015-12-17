@@ -1,6 +1,6 @@
 # ELK4 Dockerfile by MO
 #
-# VERSION 16.03.2
+# VERSION 16.03.3
 FROM ubuntu:14.04.3
 MAINTAINER MO
 
@@ -35,8 +35,6 @@ RUN addgroup --gid 2000 tpot && \
     cp /etc/elasticsearch/*.yml /usr/share/elasticsearch/config/ && \
     chown -R tpot:tpot /usr/share/elasticsearch/ /data && \
     chmod -R 760 /data
-    #/opt/kibana/bin/kibana plugin --install elastic/sense && \
-    #/opt/kibana/bin/kibana plugin --remove sense
 
 # Clean up
 RUN apt-get remove wget -y && \
