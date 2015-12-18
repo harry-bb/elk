@@ -1,6 +1,6 @@
 # ELK4 Dockerfile by MO
 #
-# VERSION 16.03.3
+# VERSION 16.03.4
 FROM ubuntu:14.04.3
 MAINTAINER MO
 
@@ -26,8 +26,10 @@ RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless pyth
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 ADD logstash.conf /etc/logstash/conf.d/logstash.conf
-ADD kibana.svg /opt/kibana/src/ui/public/images/
-ADD kibana.svg /opt/kibana/optimize/bundles/src/ui/public/images/
+ADD kibana.svg /opt/kibana/src/ui/public/images/kibana.svg
+ADD kibana.svg /opt/kibana/optimize/bundles/src/ui/public/images/kibana.svg
+ADD elk.ico /opt/kibana/src/ui/public/images/elk.ico
+ADD elk.ico /opt/kibana/optimize/bundles/src/ui/public/images/elk.ico
 RUN addgroup --gid 2000 tpot && \
     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 tpot && \
     sed -i 's/# server.port: 5601/server.port: 8080/' /opt/kibana/config/kibana.yml && \
