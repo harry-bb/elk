@@ -1,6 +1,6 @@
 # ELK4 Dockerfile by MO
 #
-# VERSION 16.03.5
+# VERSION 16.03.6
 FROM ubuntu:14.04.3
 MAINTAINER MO
 
@@ -13,13 +13,13 @@ RUN apt-get update -y && \
 RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless python-pip && \
     cd /root/ && \
     wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.2.0/elasticsearch-2.2.0.deb && \
-    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.2.0-1_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana-4.4.0-linux-x64.tar.gz && \
+    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.2.1-1_all.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana-4.4.1-linux-x64.tar.gz && \
     dpkg -i elasticsearch-2.2.0.deb && \
-    dpkg -i logstash_2.2.0-1_all.deb && \
+    dpkg -i logstash_2.2.1-1_all.deb && \
     mkdir -p /opt/kibana/ /usr/share/elasticsearch/config/ /data/ && \
-    tar -xzf kibana-4.4.0-linux-x64.tar.gz && mv kibana-4.4.0-linux-x64/* /opt/kibana/ && \
-    rm -rf kibana-4.4.0-linux-x64 kibana-4.4.0-linux-x64.tar.gz elasticsearch-2.2.0.deb logstash_2.2.0-1_all.deb && \
+    tar -xzf kibana-4.4.1-linux-x64.tar.gz && mv kibana-4.4.1-linux-x64/* /opt/kibana/ && \
+    rm -rf kibana-4.4.1-linux-x64 kibana-4.4.1-linux-x64.tar.gz elasticsearch-2.2.0.deb logstash_2.2.1-1_all.deb && \
     pip install elasticsearch-curator
 
 # Setup user, groups and configs
