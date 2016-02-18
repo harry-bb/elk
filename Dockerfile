@@ -1,7 +1,7 @@
 # ELK4 Dockerfile by MO
 #
-# VERSION 16.03.6
-FROM ubuntu:14.04.3
+# VERSION 16.03.7
+FROM ubuntu:14.04.4
 MAINTAINER MO
 
 # Setup env and apt
