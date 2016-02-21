@@ -36,7 +36,8 @@ RUN addgroup --gid 2000 tpot && \
     sed -i 's/# kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboard\/Default"/' /opt/kibana/config/kibana.yml && \
     cp /etc/elasticsearch/*.yml /usr/share/elasticsearch/config/ && \
     chown -R tpot:tpot /usr/share/elasticsearch/ /data && \
-    chmod -R 760 /data
+    chmod -R 760 /data && \
+    /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip
 
 # Clean up
 RUN apt-get remove wget -y && \
