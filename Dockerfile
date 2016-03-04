@@ -37,7 +37,8 @@ RUN addgroup --gid 2000 tpot && \
     cp /etc/elasticsearch/*.yml /usr/share/elasticsearch/config/ && \
     chown -R tpot:tpot /usr/share/elasticsearch/ /data && \
     chmod -R 760 /data && \
-    /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip
+    /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
+    /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip
 
 # Clean up
 RUN apt-get remove wget -y && \
@@ -46,4 +47,4 @@ RUN apt-get remove wget -y && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Start ELK
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
