@@ -28,3 +28,8 @@ To access the kibana dashboard, make sure you have enabled SSH on T-Pot (see T-P
 Finally, open a webbrowser and go to http://127.0.0.1:8080/app/kibana#/dashboard/Default. 
 
 Note: The kibana dashboard can be customized to fit your needs.
+
+# T-Pot Dashboard
+
+![T-Pot Dashboard](https://raw.githubusercontent.com/dtag-dev-sec/elk/master/doc/dashboard.png)
+
