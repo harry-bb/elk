@@ -234,7 +234,7 @@
       "title": "Syslog",
       "hits": 0,
       "description": "",
-      "panelsJSON": "[{\"col\":1,\"id\":\"Syslog-Events-Histogram\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-SSH-Events-Histogram\",\"panelIndex\":2,\"row\":4,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Countries-Top-10\",\"panelIndex\":3,\"row\":7,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Events-by-Country-Histogram\",\"panelIndex\":4,\"row\":10,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Syslog-Program-Top-10\",\"panelIndex\":6,\"row\":7,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"Syslog-Logs\",\"type\":\"search\",\"panelIndex\":7,\"size_x\":12,\"size_y\":7,\"col\":1,\"row\":26,\"columns\":[\"_source\"],\"sort\":[\"@timestamp\",\"desc\"]},{\"id\":\"Syslog-Map\",\"type\":\"visualization\",\"panelIndex\":8,\"size_x\":12,\"size_y\":7,\"col\":1,\"row\":13},{\"id\":\"Syslog-ASN-Top-10\",\"type\":\"visualization\",\"panelIndex\":9,\"size_x\":6,\"size_y\":6,\"col\":7,\"row\":20},{\"id\":\"Syslog-Source-IP-Top-10\",\"type\":\"visualization\",\"panelIndex\":10,\"size_x\":6,\"size_y\":6,\"col\":1,\"row\":20},{\"id\":\"Syslog-Username-Tagcloud\",\"type\":\"visualization\",\"panelIndex\":11,\"size_x\":4,\"size_y\":3,\"col\":9,\"row\":7}]",
+      "panelsJSON": "[{\"col\":1,\"id\":\"Syslog-Events-Histogram\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-SSH-Events-Histogram\",\"panelIndex\":2,\"row\":4,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Countries-Top-10\",\"panelIndex\":3,\"row\":7,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Events-by-Country-Histogram\",\"panelIndex\":4,\"row\":10,\"size_x\":12,\"size_y\":3,\"type\":\"visualization\"},{\"col\":5,\"id\":\"Syslog-Program-Top-10\",\"panelIndex\":6,\"row\":7,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"},{\"col\":1,\"columns\":[\"_source\"],\"id\":\"Syslog-Logs\",\"panelIndex\":7,\"row\":26,\"size_x\":12,\"size_y\":7,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":1,\"id\":\"Syslog-Map\",\"panelIndex\":8,\"row\":13,\"size_x\":12,\"size_y\":7,\"type\":\"visualization\"},{\"col\":7,\"id\":\"Syslog-ASN-Top-10\",\"panelIndex\":9,\"row\":20,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":1,\"id\":\"Syslog-Source-IP-Top-10\",\"panelIndex\":10,\"row\":20,\"size_x\":6,\"size_y\":6,\"type\":\"visualization\"},{\"col\":9,\"id\":\"Syslog-Username-Tagcloud\",\"panelIndex\":11,\"row\":7,\"size_x\":4,\"size_y\":3,\"type\":\"visualization\"}]",
       "optionsJSON": "{\"darkTheme\":true}",
       "uiStateJSON": "{}",
       "version": 1,
@@ -242,7 +242,7 @@
       "timeTo": "now",
       "timeFrom": "now-24h",
       "kibanaSavedObjectMeta": {
-        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"type:\\\"Syslog\\\"\"}}}]}"
       }
     }
   },
@@ -2340,11 +2340,11 @@
     }
   },
   {
-    "_id": "Syslog-Username-Tagcloud",
+    "_id": "Syslog-Map",
     "_type": "visualization",
     "_source": {
-      "title": "Syslog - Username Tagcloud",
-      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"id\":\"2\",\"params\":{\"field\":\"user.raw\",\"order\":\"desc\",\"orderBy\":\"1\",\"size\":25},\"schema\":\"segment\",\"type\":\"terms\"}],\"listeners\":{},\"params\":{\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"normal\",\"fromDegree\":0,\"maxFontSize\":72,\"minFontSize\":18,\"orientations\":1,\"spiral\":\"archimedean\",\"textScale\":\"linear\",\"timeInterval\":500,\"toDegree\":0},\"title\":\"New Visualization\",\"type\":\"tagcloud\"}",
+      "title": "Syslog - Map",
+      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"id\":\"2\",\"params\":{\"autoPrecision\":true,\"field\":\"geoip.location\",\"precision\":2},\"schema\":\"segment\",\"type\":\"geohash_grid\"}],\"listeners\":{},\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Shaded Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"title\":\"New Visualization\",\"type\":\"tile_map\"}",
       "uiStateJSON": "{}",
       "description": "",
       "savedSearchId": "Syslog-Logs",
@@ -2355,11 +2355,11 @@
     }
   },
   {
-    "_id": "Syslog-Map",
+    "_id": "Syslog-Username-Tagcloud",
     "_type": "visualization",
     "_source": {
-      "title": "Syslog - Map",
-      "visState": "{\"aggs\":[{\"id\":\"1\",\"params\":{},\"schema\":\"metric\",\"type\":\"count\"},{\"id\":\"2\",\"params\":{\"autoPrecision\":true,\"field\":\"geoip.location\",\"precision\":2},\"schema\":\"segment\",\"type\":\"geohash_grid\"}],\"listeners\":{},\"params\":{\"addTooltip\":true,\"heatBlur\":15,\"heatMaxZoom\":16,\"heatMinOpacity\":0.1,\"heatNormalizeData\":true,\"heatRadius\":25,\"isDesaturated\":true,\"mapType\":\"Shaded Circle Markers\",\"wms\":{\"enabled\":false,\"options\":{\"attribution\":\"Maps provided by USGS\",\"format\":\"image/png\",\"layers\":\"0\",\"styles\":\"\",\"transparent\":true,\"version\":\"1.3.0\"},\"url\":\"https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer\"}},\"title\":\"New Visualization\",\"type\":\"tile_map\"}",
+      "title": "Syslog - Username Tagcloud",
+      "visState": "{\"title\":\"Syslog - Username Tagcloud\",\"type\":\"tagcloud\",\"params\":{\"font\":\"serif\",\"fontStyle\":\"normal\",\"fontWeight\":\"normal\",\"fromDegree\":0,\"maxFontSize\":72,\"minFontSize\":18,\"orientations\":1,\"spiral\":\"archimedean\",\"textScale\":\"linear\",\"timeInterval\":500,\"toDegree\":0},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"segment\",\"params\":{\"field\":\"username.raw\",\"size\":25,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
       "uiStateJSON": "{}",
       "description": "",
       "savedSearchId": "Syslog-Logs",
