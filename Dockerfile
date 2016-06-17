@@ -20,7 +20,7 @@ RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless pyth
     mkdir -p /opt/kibana/ /usr/share/elasticsearch/config/ /data/ && \
     tar -xzf kibana-4.4.1-linux-x64.tar.gz && mv kibana-4.4.1-linux-x64/* /opt/kibana/ && \
     rm -rf kibana-4.4.1-linux-x64 kibana-4.4.1-linux-x64.tar.gz elasticsearch-2.2.0.deb logstash_2.2.2-1_all.deb && \
-    pip install elasticsearch-curator
+    pip install alerta elasticsearch-curator
 
 # Setup user, groups and configs
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
