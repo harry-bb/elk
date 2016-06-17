@@ -1,0 +1,53 @@
+# Input section
+input {
+
+# Glastopf
+  file {
+    path => ["/data/glastopf/log/glastopf.log"]
+    type => "Glastopf"
+  }
+}
+
+# Filter Section
+filter {
+
+# Glastopf
+  if [type] == "Glastopf" {
+    grok {
+      match => [ "message", "\A%{TIMESTAMP_ISO8601}%{SPACE}%{NOTSPACE}%{SPACE}%{IP:src_ip}%{SPACE}%{WORD}%{SPACE}%{URIPROTO:http_method}%{SPACE}%{NOTSPACE:http_uri}%{SPACE}%{NOTSPACE}%{SPACE}%{HOSTNAME}:%{NUMBER:dest_port}" ]
+    }
+    date {
+      match => [ "timestamp", "ISO8601" ]
+    }
+  }
+
+# Add geo coordinates / ASN info
+  if [src_ip]  {
+    geoip {
+      source => "src_ip"
+      target => "geoip"
+      database => "/opt/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-2.0.5/vendor/GeoLiteCity-2013-01-18.dat"
+      add_field => [ "[geoip][coordinates]", "%{[geoip][longitude]}" ]
+      add_field => [ "[geoip][coordinates]", "%{[geoip][latitude]}"  ]
+    }
+    mutate {
+      convert => [ "[geoip][coordinates]", "float" ]
+    }
+    geoip {
+      source => "src_ip"
+      target => "geoip"
+      database => "/opt/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-2.0.5/vendor/GeoIPASNum-2014-02-12.dat"
+      add_field => [ "[geoip][full]", "%{[geoip][number]} %{[geoip][asn]}" ]
+    }
+  }
+}
+
+# Output section
+output {
+  elasticsearch {
+    hosts => ["localhost:9200"]
+  }
+  #stdout {
+  #  codec => json
+  #}
+}
