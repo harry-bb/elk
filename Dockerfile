@@ -1,6 +1,6 @@
 # ELK4 Dockerfile by MO
 #
-# VERSION 16.03.7
+# VERSION 16.10.0
 FROM ubuntu:14.04.4
 MAINTAINER MO
 
@@ -20,12 +20,12 @@ RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless pyth
     mkdir -p /opt/kibana/ /usr/share/elasticsearch/config/ /data/ && \
     tar -xzf kibana-4.4.1-linux-x64.tar.gz && mv kibana-4.4.1-linux-x64/* /opt/kibana/ && \
     rm -rf kibana-4.4.1-linux-x64 kibana-4.4.1-linux-x64.tar.gz elasticsearch-2.2.0.deb logstash_2.2.2-1_all.deb && \
-    pip install elasticsearch-curator
+    pip install alerta elasticsearch-curator
 
 # Setup user, groups and configs
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
-ADD logstash.conf /etc/logstash/conf.d/logstash.conf
+ADD conf/ /etc/logstash/conf.d/
 ADD kibana.svg /opt/kibana/src/ui/public/images/kibana.svg
 ADD kibana.svg /opt/kibana/optimize/bundles/src/ui/public/images/kibana.svg
 ADD elk.ico /opt/kibana/src/ui/public/images/elk.ico
