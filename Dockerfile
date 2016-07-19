@@ -15,8 +15,8 @@ RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless pyth
     wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.4/elasticsearch-2.3.4.deb && \
     wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.3.4-1_all.deb && \
     wget https://download.elastic.co/kibana/kibana/kibana_4.5.3_amd64.deb && \
-    dpkg -i elasticsearch-2.2.0.deb && \
-    dpkg -i logstash_2.2.2-1_all.deb && \
+    dpkg -i elasticsearch-2.3.4.deb && \
+    dpkg -i logstash_2.3.4-1_all.deb && \
     dpkg -i kibana_4.5.3_amd64.deb && \
     rm -rf *.deb && \
     pip install alerta elasticsearch-curator
