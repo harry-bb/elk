@@ -12,14 +12,13 @@ RUN apt-get update -y && \
 # Get and install packages
 RUN apt-get install -y supervisor wget openjdk-7-jdk openjdk-7-jre-headless python-pip && \
     cd /root/ && \
-    wget https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.2.0/elasticsearch-2.2.0.deb && \
-    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.2.2-1_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana-4.4.1-linux-x64.tar.gz && \
+    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.4/elasticsearch-2.3.4.deb && \
+    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.3.4-1_all.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana_4.5.3_amd64.deb && \
     dpkg -i elasticsearch-2.2.0.deb && \
     dpkg -i logstash_2.2.2-1_all.deb && \
-    mkdir -p /opt/kibana/ /usr/share/elasticsearch/config/ /data/ && \
-    tar -xzf kibana-4.4.1-linux-x64.tar.gz && mv kibana-4.4.1-linux-x64/* /opt/kibana/ && \
-    rm -rf kibana-4.4.1-linux-x64 kibana-4.4.1-linux-x64.tar.gz elasticsearch-2.2.0.deb logstash_2.2.2-1_all.deb && \
+    dpkg -i kibana_4.5.3_amd64.deb && \
+    rm -rf *.deb && \
     pip install alerta elasticsearch-curator
 
 # Setup user, groups and configs
@@ -38,7 +37,8 @@ RUN addgroup --gid 2000 tpot && \
     chown -R tpot:tpot /usr/share/elasticsearch/ /data && \
     chmod -R 760 /data && \
     /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
-    /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip
+    /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip && \
+    /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
 
 # Clean up
 RUN apt-get remove wget -y && \

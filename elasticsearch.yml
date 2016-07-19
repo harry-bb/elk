@@ -1,4 +1,12 @@
+### New node and cluster name, activate later
+### cluster.name: tpotcluster
+### node.name: "tpotcluster-node-01"
+index.number_of_shards: 1
+index.number_of_replicas: 0
 path:
-  logs: /data/elk/log
-  data: /data/elk/data
+    logs: /data/elk/log
+    data: /data/elk/data
 http.cors.enabled: true
+http.host: 0.0.0.0
+http.bind_host: 0.0.0.0
+http.publish_host: 0.0.0.0
