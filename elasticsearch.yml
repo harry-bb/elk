@@ -6,7 +6,4 @@ index.number_of_replicas: 0
 path:
     logs: /data/elk/log
     data: /data/elk/data
-http.cors.enabled: true
 http.host: 0.0.0.0
-http.bind_host: 0.0.0.0
-http.publish_host: 0.0.0.0

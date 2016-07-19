@@ -33,9 +33,9 @@ RUN addgroup --gid 2000 tpot && \
     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 tpot && \
     sed -i 's/# server.port: 5601/server.port: 8080/' /opt/kibana/config/kibana.yml && \
     sed -i 's/# kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboard\/Default"/' /opt/kibana/config/kibana.yml && \
-    cp /etc/elasticsearch/*.yml /usr/share/elasticsearch/config/ && \
-    chown -R tpot:tpot /usr/share/elasticsearch/ /data && \
-    chmod -R 760 /data && \
+    mkdir -p /usr/share/elasticsearch/config && \
+    cp -R /etc/elasticsearch/* /usr/share/elasticsearch/config/ && \
+    chown -R tpot:tpot /usr/share/elasticsearch/ && \
     /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
     /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip && \
     /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
