@@ -31,7 +31,7 @@ ADD elk.ico /opt/kibana/src/ui/public/images/elk.ico
 ADD elk.ico /opt/kibana/optimize/bundles/src/ui/public/images/elk.ico
 RUN addgroup --gid 2000 tpot && \
     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 tpot && \
-    sed -i 's/# server.port: 5601/server.port: 8080/' /opt/kibana/config/kibana.yml && \
+    sed -i 's/# server.basePath: ""/server.basePath: "\/kibana"/' /opt/kibana/config/kibana.yml && \
     sed -i 's/# kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboard\/Default"/' /opt/kibana/config/kibana.yml && \
     mkdir -p /usr/share/elasticsearch/config && \
     cp -R /etc/elasticsearch/* /usr/share/elasticsearch/config/ && \
