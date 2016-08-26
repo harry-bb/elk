@@ -12,12 +12,12 @@ RUN apt-get update -y && \
 # Get and install packages
 RUN apt-get install -y logrotate supervisor wget openjdk-8-jdk openjdk-8-jre-headless python-pip && \
     cd /root/ && \
-    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.4/elasticsearch-2.3.4.deb && \
+    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.5/elasticsearch-2.3.5.deb && \
     wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.3.4-1_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana_4.5.3_amd64.deb && \
-    dpkg -i elasticsearch-2.3.4.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana_4.5.4_amd64.deb && \
+    dpkg -i elasticsearch-2.3.5.deb && \
     dpkg -i logstash_2.3.4-1_all.deb && \
-    dpkg -i kibana_4.5.3_amd64.deb && \
+    dpkg -i kibana_4.5.4_amd64.deb && \
     pip install alerta elasticsearch-curator && \
     rm -rf *.deb && \
     apt-get remove wget -y && \
