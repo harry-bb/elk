@@ -1,6 +1,6 @@
 ### New node and cluster name, activate later
-### cluster.name: tpotcluster
-### node.name: "tpotcluster-node-01"
+cluster.name: tpotcluster
+node.name: "tpotcluster-node-01"
 index.number_of_shards: 1
 index.number_of_replicas: 0
 path:
