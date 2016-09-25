@@ -1,33 +1,30 @@
 # ELK4 Dockerfile by MO
 #
 # VERSION 16.10.0
-FROM ubuntu:16.04 
+FROM debian:jessie 
 MAINTAINER MO
+
+# Include dist
+ADD dist/ /root/dist/
 
 # Setup env and apt
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update -y && \
-    apt-get upgrade -y
+    apt-get upgrade -y && \
 
 # Get and install packages
-RUN apt-get install -y logrotate supervisor wget openjdk-8-jdk openjdk-8-jre-headless python-pip && \
+    apt-get install -y logrotate supervisor wget openjdk-7-jdk openjdk-7-jre-headless python-pip && \
     cd /root/ && \
-    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.5/elasticsearch-2.3.5.deb && \
-    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash_2.3.4-1_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana_4.5.4_amd64.deb && \
-    dpkg -i elasticsearch-2.3.5.deb && \
-    dpkg -i logstash_2.3.4-1_all.deb && \
-    dpkg -i kibana_4.5.4_amd64.deb && \
+    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.0/elasticsearch-2.4.0.deb && \
+    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash-2.4.0_all.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-amd64.deb && \
+    dpkg -i elasticsearch-2.4.0.deb && \
+    dpkg -i logstash-2.4.0_all.deb && \
+    dpkg -i kibana-4.6.1-amd64.deb && \
     pip install alerta elasticsearch-curator && \
-    rm -rf *.deb && \
-    apt-get remove wget -y && \
-    apt-get autoremove -y && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add and move files
-ADD dist/ /root/dist/
-RUN cd /root/dist/ && \
+    cd /root/dist/ && \
     cp supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
     cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml && \
     cp conf/* /etc/logstash/conf.d/ && \
@@ -36,10 +33,9 @@ RUN cd /root/dist/ && \
     cp elk.ico /opt/kibana/src/ui/public/images/elk.ico && \
     cp elk.ico /opt/kibana/optimize/bundles/src/ui/public/images/elk.ico && \
     cd / && \
-    rm -rf /root/dist
 
 # Setup user, groups and configs
-RUN addgroup --gid 2000 tpot && \
+    addgroup --gid 2000 tpot && \
     adduser --system --no-create-home --shell /bin/bash --uid 2000 --disabled-password --disabled-login --gid 2000 tpot && \
     sed -i 's/# server.basePath: ""/server.basePath: "\/kibana"/' /opt/kibana/config/kibana.yml && \
     sed -i 's/# kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboard\/Default"/' /opt/kibana/config/kibana.yml && \
@@ -48,7 +44,13 @@ RUN addgroup --gid 2000 tpot && \
     chown -R tpot:tpot /usr/share/elasticsearch/ && \
     /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
     /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip && \
-    /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head
+    /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head && \
+
+# Clean up
+    rm -rf /root/* && \
+    apt-get purge wget -y && \
+    apt-get autoremove -y && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Start ELK
 CMD ["/usr/bin/supervisord","-c","/etc/supervisor/supervisord.conf"]
