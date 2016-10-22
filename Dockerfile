@@ -45,6 +45,13 @@ RUN apt-get update -y && \
     /opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
     /opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip && \
     /usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head && \
+    cd /opt/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-2.0.7/vendor && \
+    wget http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
+    wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz && \
+    gunzip GeoLiteCity.dat.gz && \
+    gunzip GeoIPASNum.dat.gz && \
+    mv GeoLiteCity.dat GeoLiteCity-2013-01-18.dat && \
+    mv GeoIPASNum.dat GeoIPASNum-2014-02-12.dat && \
 
 # Clean up
     rm -rf /root/* && \
