@@ -17,10 +17,10 @@ RUN apt-get update -y && \
     cd /root/ && \
     wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.1/elasticsearch-2.4.1.deb && \
     wget https://download.elastic.co/logstash/logstash/packages/debian/logstash-2.4.0_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-amd64.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana-4.6.2-amd64.deb && \
     dpkg -i elasticsearch-2.4.1.deb && \
     dpkg -i logstash-2.4.0_all.deb && \
-    dpkg -i kibana-4.6.1-amd64.deb && \
+    dpkg -i kibana-4.6.2-amd64.deb && \
     pip install alerta elasticsearch-curator && \
 
 # Add and move files
