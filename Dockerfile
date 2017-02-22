@@ -1,7 +1,7 @@
 # ELK4 Dockerfile by MO
 #
 # VERSION 16.10.0
-FROM debian:jessie 
+FROM debian:jessie
 MAINTAINER MO
 
 # Include dist
@@ -15,12 +15,12 @@ RUN apt-get update -y && \
 # Get and install packages
     apt-get install -y logrotate supervisor wget openjdk-7-jdk openjdk-7-jre-headless python-pip && \
     cd /root/ && \
-    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.1/elasticsearch-2.4.1.deb && \
-    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash-2.4.0_all.deb && \
-    wget https://download.elastic.co/kibana/kibana/kibana-4.6.2-amd64.deb && \
-    dpkg -i elasticsearch-2.4.1.deb && \
-    dpkg -i logstash-2.4.0_all.deb && \
-    dpkg -i kibana-4.6.2-amd64.deb && \
+    wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.4.4/elasticsearch-2.4.4.deb && \
+    wget https://download.elastic.co/logstash/logstash/packages/debian/logstash-2.4.1_all.deb && \
+    wget https://download.elastic.co/kibana/kibana/kibana-4.6.4-amd64.deb && \
+    dpkg -i elasticsearch-2.4.4.deb && \
+    dpkg -i logstash-2.4.1_all.deb && \
+    dpkg -i kibana-4.6.4-amd64.deb && \
     pip install alerta elasticsearch-curator && \
 
 # Add and move files
