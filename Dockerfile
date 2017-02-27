@@ -48,6 +48,7 @@ RUN apt-get update -y && \
     sed -i 's/#server.basePath: ""/server.basePath: "\/kibana"/' /etc/kibana/kibana.yml && \
     sed -i 's/#kibana.defaultAppId: "discover"/kibana.defaultAppId: "dashboard\/Default"/' /etc/kibana/kibana.yml && \
     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /etc/kibana/kibana.yml && \
+    sed -i 's/\"http\:\/\/localhost\:9200\"/\"https\:\/\/\<FQDN\>\:64297\/es\/\"/' /opt/elasticsearch-head/_site/app.js && \
     mkdir -p /usr/share/elasticsearch/config && \
     cp -R /etc/elasticsearch/* /usr/share/elasticsearch/config/ && \
     chown -R tpot:tpot /usr/share/elasticsearch/ && \
