@@ -36,8 +36,8 @@ RUN apt-get update -y && \
     cp supervisord.conf /etc/supervisor/conf.d/supervisord.conf && \
     cp elasticsearch.yml /etc/elasticsearch/elasticsearch.yml && \
     cp conf/* /etc/logstash/conf.d/ && \
-#    cp kibana.svg /usr/share/kibana/src/ui/public/images/kibana.svg && \
-#    cp kibana.svg /usr/share/kibana/src/ui/public/icons/kibana.svg && \
+    cp kibana.svg /usr/share/kibana/src/ui/public/images/kibana.svg && \
+    cp kibana.svg /usr/share/kibana/src/ui/public/icons/kibana.svg && \
     cp elk.ico /usr/share/kibana/src/ui/public/assets/favicons/favicon.ico && \
 #    cp elk.ico /opt/kibana/optimize/bundles/src/ui/public/images/elk.ico && \
     cd / && \
