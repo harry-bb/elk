@@ -1,7 +1,7 @@
 # ELK5 Dockerfile by MO
 #
 # VERSION 16.10.0
-FROM ubuntu:16.04 
+FROM ubuntu:16.04
 MAINTAINER MO
 
 # Include dist
@@ -16,12 +16,12 @@ RUN apt-get update -y && \
 # Get and install packages
     apt-get install -y git logrotate nodejs npm supervisor wget openjdk-8-jdk openjdk-8-jre-headless python-pip && \
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.1.deb && \
-    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.2.1.deb && \
-    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.2.1-amd64.deb && \
-    dpkg -i elasticsearch-5.2.1.deb && \
-    dpkg -i logstash-5.2.1.deb && \
-    dpkg -i kibana-5.2.1-amd64.deb && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.2.deb && \
+    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.deb && \
+    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.2.2-amd64.deb && \
+    dpkg -i elasticsearch-5.2.2.deb && \
+    dpkg -i logstash-5.2.2.deb && \
+    dpkg -i kibana-5.2.2-amd64.deb && \
     pip install alerta elasticsearch-curator && \
     ln -s /usr/bin/nodejs /usr/bin/node && \
     cd /opt/ && \
@@ -39,7 +39,11 @@ RUN apt-get update -y && \
     cp kibana.svg /usr/share/kibana/src/ui/public/images/kibana.svg && \
     cp kibana.svg /usr/share/kibana/src/ui/public/icons/kibana.svg && \
     cp elk.ico /usr/share/kibana/src/ui/public/assets/favicons/favicon.ico && \
-#    cp elk.ico /opt/kibana/optimize/bundles/src/ui/public/images/elk.ico && \
+    cp elk.ico /usr/share/kibana/src/ui/public/assets/favicons/favicon-16x16.png && \
+    cp elk.ico /usr/share/kibana/src/ui/public/assets/favicons/favicon-32x32.png && \
+    cp elk.ico /opt/elasticsearch-head/node_modules/karma/static/favicon.ico && \
+    cp elasticsearch-template-es5x.json /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-output-elasticsearch-6.2.6-java/lib/logstash/outputs/elasticsearch/ && \
+    cp create_kibana_index.js /usr/share/kibana/src/core_plugins/elasticsearch/lib/ && \
     cd / && \
 
 # Setup user, groups and configs
@@ -52,22 +56,11 @@ RUN apt-get update -y && \
     mkdir -p /usr/share/elasticsearch/config && \
     cp -R /etc/elasticsearch/* /usr/share/elasticsearch/config/ && \
     chown -R tpot:tpot /usr/share/elasticsearch/ && \
-    #/opt/kibana/bin/kibana plugin -i tagcloud -u https://github.com/stormpython/tagcloud/archive/master.zip && \
-    #/opt/kibana/bin/kibana plugin -i heatmap -u https://github.com/stormpython/heatmap/archive/master.zip && \
-    #/usr/share/elasticsearch/bin/plugin install mobz/elasticsearch-head && \
-    #cd /opt/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-4.0.4-java/vendor/ && \
-    cd /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-4.0.4-java/vendor/ && \
-    #rm GeoLite2-City.mmdb && \
-    #wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz && \
-    wget http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz && \
-    #gunzip GeoLiteCity.dat.gz && \
-    gunzip GeoIPASNum.dat.gz && \
-    #mv GeoLiteCity.dat GeoLiteCity-2013-01-18.dat && \
-    #mv GeoIPASNum.dat GeoIPASNum-2014-02-12.dat && \
+    /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
 
 # Clean up
     rm -rf /root/* && \
-    apt-get purge wget -y && \
+    apt-get purge wget git -y && \
     apt-get autoremove -y && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
