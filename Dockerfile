@@ -1,6 +1,6 @@
 # ELK5 Dockerfile by MO
 #
-# VERSION 16.10.0
+# VERSION 17.06 
 FROM ubuntu:16.04
 MAINTAINER MO
 
