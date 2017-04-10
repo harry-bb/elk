@@ -16,12 +16,12 @@ RUN apt-get update -y && \
 # Get and install packages
     apt-get install -y git logrotate nodejs npm supervisor wget openjdk-8-jdk openjdk-8-jre-headless python-pip && \
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.2.deb && \
-    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.2.2.deb && \
-    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.2.2-amd64.deb && \
-    dpkg -i elasticsearch-5.2.2.deb && \
-    dpkg -i logstash-5.2.2.deb && \
-    dpkg -i kibana-5.2.2-amd64.deb && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.3.0.deb && \
+    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.3.0.deb && \
+    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.3.0-amd64.deb && \
+    dpkg -i elasticsearch-5.3.0.deb && \
+    dpkg -i logstash-5.3.0.deb && \
+    dpkg -i kibana-5.3.0-amd64.deb && \
     pip install alerta elasticsearch-curator && \
     ln -s /usr/bin/nodejs /usr/bin/node && \
     cd /opt/ && \
