@@ -1,0 +1,38 @@
+# Elasticsearch Dockerfile by MO
+#
+# VERSION 17.06 
+FROM openjdk:8u121-jre-alpine
+MAINTAINER MO
+
+# Include dist
+ADD dist/ /root/dist/
+
+# Setup env and apt
+RUN apk -U add bash wget curl && \
+
+# Get and install packages
+    cd /root/dist/ && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.3.0.tar.gz && \
+    tar xvfz elasticsearch-5.3.0.tar.gz -C /usr/share/ && \
+    mv /usr/share/elasticsearch-5.3.0 /usr/share/elasticsearch && \
+
+# Add and move files
+    cd /root/dist/ && \
+    mkdir -p /usr/share/elasticsearch/config && \
+    cp elasticsearch.yml /usr/share/elasticsearch/config/ && \
+
+# Setup user, groups and configs
+    addgroup -g 2000 tpot && \
+    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 tpot && \
+    chown -R tpot:tpot /usr/share/elasticsearch/ && \
+
+# Clean up
+    apk del wget && \    
+    rm -rf /root/*
+
+# Healthcheck
+HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:9200/_cat/health'
+
+# Start ELK
+USER tpot
+CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
