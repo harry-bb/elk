@@ -5,7 +5,7 @@ FROM node:alpine
 MAINTAINER MO
 
 # Setup env and apt
-RUN apk -U add bash curl nodejs git && \
+RUN apk -U add bash curl nodejs git procps && \
 
 # Get and install packages
     mkdir -p /usr/src/app/ && \

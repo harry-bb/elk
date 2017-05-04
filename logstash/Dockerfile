@@ -8,19 +8,19 @@ MAINTAINER MO
 ADD dist/ /root/dist/
 
 # Setup env and apt
-RUN apk -U add bash wget curl libc6-compat libzmq && \
+RUN apk -U add bash wget curl libc6-compat libzmq procps && \
 
 # Get and install packages
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.3.0.tar.gz && \
-    tar xvfz logstash-5.3.0.tar.gz -C /usr/share/ && \
-    mv /usr/share/logstash-5.3.0 /usr/share/logstash && \
+    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.3.2.tar.gz && \
+    tar xvfz logstash-5.3.2.tar.gz -C /usr/share/ && \
+    mv /usr/share/logstash-5.3.2 /usr/share/logstash && \
 
 # Add and move files
     cd /root/dist/ && \
     mkdir -p /etc/logstash/conf.d && \
     cp logstash.conf /etc/logstash/conf.d/ && \
-    cp elasticsearch-template-es5x.json /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-output-elasticsearch-6.2.6-java/lib/logstash/outputs/elasticsearch/ && \
+    cp elasticsearch-template-es5x.json /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-output-elasticsearch-6.3.0-java/lib/logstash/outputs/elasticsearch/ && \
 
 # Clean up
     apk del wget && \
