@@ -38,6 +38,9 @@ RUN apk -U add bash wget curl nodejs && \
     sed -i 's/#server.host: "localhost"/server.host: "0.0.0.0"/' /usr/share/kibana/config/kibana.yml && \
     sed -i 's/#elasticsearch.url: "http:\/\/localhost:9200"/elasticsearch.url: "http:\/\/elasticsearch:9200"/' /usr/share/kibana/config/kibana.yml && \
     /usr/share/kibana/bin/kibana 2>&1 | grep -m 1 "Optimization of bundles" && \
+    addgroup -g 2000 tpot && \
+    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 tpot && \
+    chown -R tpot:tpot /usr/share/kibana/ && \
 
 # Clean up
     apk del wget && \
@@ -47,4 +50,5 @@ RUN apk -U add bash wget curl nodejs && \
 HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:5601'
 
 # Start kibana 
+USER tpot
 CMD ["/usr/share/kibana/bin/kibana"]
