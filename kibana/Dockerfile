@@ -12,9 +12,9 @@ RUN apk -U add bash wget curl nodejs procps && \
 
 # Get and install packages
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.3.2-linux-x86.tar.gz && \
-    tar xvfz kibana-5.3.2-linux-x86.tar.gz -C /usr/share/ && \
-    mv /usr/share/kibana-5.3.2-linux-x86 /usr/share/kibana && \
+    mkdir -p /usr/share/kibana/ && \
+    wget https://artifacts.elastic.co/downloads/kibana/kibana-5.4.0-linux-x86.tar.gz && \
+    tar xvfz kibana-5.4.0-linux-x86.tar.gz --strip-components=1 -C /usr/share/kibana/ && \
 
 # Kibana's bundled node does not work in alpine
     rm /usr/share/kibana/node/bin/node && \

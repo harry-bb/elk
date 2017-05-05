@@ -12,9 +12,9 @@ RUN apk -U add bash wget curl procps && \
 
 # Get and install packages
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.3.2.tar.gz && \
-    tar xvfz elasticsearch-5.3.2.tar.gz -C /usr/share/ && \
-    mv /usr/share/elasticsearch-5.3.2 /usr/share/elasticsearch && \
+    mkdir -p /usr/share/elasticsearch/ && \
+    wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.4.0.tar.gz && \
+    tar xvfz elasticsearch-5.4.0.tar.gz --strip-components=1 -C /usr/share/elasticsearch/ && \
 
 # Add and move files
     cd /root/dist/ && \

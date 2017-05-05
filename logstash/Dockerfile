@@ -12,9 +12,11 @@ RUN apk -U add bash wget curl libc6-compat libzmq procps && \
 
 # Get and install packages
     cd /root/dist/ && \
-    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.3.2.tar.gz && \
-    tar xvfz logstash-5.3.2.tar.gz -C /usr/share/ && \
-    mv /usr/share/logstash-5.3.2 /usr/share/logstash && \
+    mkdir -p /usr/share/logstash/ && \
+    wget https://artifacts.elastic.co/downloads/logstash/logstash-5.4.0.tar.gz && \
+    wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz && \
+    tar xvfz logstash-5.4.0.tar.gz --strip-components=1 -C /usr/share/logstash/ && \
+    tar xvfz GeoLite2-ASN.tar.gz --strip-components=1 -C /usr/share/logstash/vendor/bundle/jruby/1.9/gems/logstash-filter-geoip-4.0.4-java/vendor/ && \
 
 # Add and move files
     cd /root/dist/ && \
