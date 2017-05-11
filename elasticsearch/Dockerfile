@@ -22,17 +22,17 @@ RUN apk -U add bash wget curl procps && \
     cp elasticsearch.yml /usr/share/elasticsearch/config/ && \
 
 # Setup user, groups and configs
-    addgroup -g 2000 tpot && \
-    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 tpot && \
-    chown -R tpot:tpot /usr/share/elasticsearch/ && \
+    addgroup -g 2000 elasticsearch && \
+    adduser -S -H -s /bin/bash -u 2000 -D -g 2000 elasticsearch && \
+    chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/ && \
 
 # Clean up
-    apk del wget && \    
+    apk del wget && \
     rm -rf /root/*
 
 # Healthcheck
 HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:9200/_cat/health'
 
 # Start ELK
-USER tpot
+USER elasticsearch
 CMD ["/usr/share/elasticsearch/bin/elasticsearch"]
