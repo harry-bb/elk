@@ -8,7 +8,8 @@ MAINTAINER MO
 ADD dist/ /root/dist/
 
 # Setup env and apt
-RUN apk -U add bash wget curl procps && \
+RUN apk -U upgrade && \
+    apk add bash wget curl procps && \
 
 # Get and install packages
     cd /root/dist/ && \

@@ -8,7 +8,8 @@ MAINTAINER MO
 ADD dist/ /root/dist/
 
 # Setup env and apt
-RUN apk -U add bash wget curl libc6-compat libzmq procps && \
+RUN apk -U upgrade && \
+    apk add bash wget curl libc6-compat libzmq procps && \
 
 # Get and install packages
     cd /root/dist/ && \
