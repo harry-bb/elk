@@ -1,7 +1,7 @@
 # Elasticsearch-head Dockerfile by MO
 #
 # VERSION 17.06 
-FROM node:alpine
+FROM alpine
 MAINTAINER MO
 
 # Setup env and apt

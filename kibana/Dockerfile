@@ -1,7 +1,4 @@
-# Kibana Dockerfile by MO
-#
-# VERSION 17.06 
-FROM openjdk:8u121-jre-alpine
+FROM alpine
 MAINTAINER MO
 
 # Include dist
@@ -9,7 +6,7 @@ ADD dist/ /root/dist/
 
 # Setup env and apt
 RUN apk -U upgrade && \
-    apk add bash wget curl nodejs procps && \
+    apk add bash curl nodejs procps wget && \
 
 # Get and install packages
     cd /root/dist/ && \
