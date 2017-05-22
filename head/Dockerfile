@@ -24,7 +24,7 @@ RUN apk -U upgrade && \
     apk del git
 
 # Healthcheck
-HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:9100'
+HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:9100'
 
 # Start elasticsearch-head
 USER head
