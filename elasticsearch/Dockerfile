@@ -29,7 +29,7 @@ RUN apk -U upgrade && \
     rm -rf /root/*
 
 # Healthcheck
-HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:9200/_cat/health'
+HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:9200/_cat/health'
 
 # Start ELK
 USER elasticsearch
