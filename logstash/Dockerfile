@@ -27,7 +27,7 @@ RUN apk -U upgrade && \
     rm -rf /root/*
 
 # Healthcheck
-HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:9600'
+HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:9600'
 
 # Start logstash 
 CMD ["/usr/share/logstash/bin/logstash", "-f", "/etc/logstash/conf.d/logstash.conf"]
