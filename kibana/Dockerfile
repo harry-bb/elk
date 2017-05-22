@@ -45,7 +45,7 @@ RUN apk -U upgrade && \
     rm -rf /root/*
 
 # Healthcheck
-HEALTHCHECK --timeout=5s CMD curl -s -XGET 'http://127.0.0.1:5601'
+HEALTHCHECK --retries=10 CMD curl -s -XGET 'http://127.0.0.1:5601'
 
 # Start kibana 
 USER kibana
