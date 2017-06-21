@@ -6,7 +6,7 @@ MAINTAINER MO
 
 # Setup env and apt
 RUN apk -U upgrade && \
-    apk add bash curl nodejs git procps && \
+    apk add bash curl nodejs nodejs-npm git procps && \
 
 # Get and install packages
     mkdir -p /usr/src/app/ && \
